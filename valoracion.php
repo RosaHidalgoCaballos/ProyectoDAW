@@ -1,9 +1,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
+        <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<h1>Dar valoración</h1>
+        <div class="contenedor">
+        <h1>Página de valoración de libros</h1>
+        <h2>Dar valoración</h2>
+        <img src="images/valorar.jpg" class="valorar" /></br></br>
 		<?php 
             try{
                 $bd = new PDO('mysql:host=localhost;dbname=bdrosa', 'root', '');
@@ -17,7 +21,6 @@
 					$codigoLibro=$_POST['CodigoLibro'];
 					$valoracion=$_POST['Valoracion'];
 					$opinion=$_POST['Opinion'];
-
                     
                     $resultado = $bd->exec("INSERT INTO valoracion VALUES ('$dniLector','$codigoLibro','$valoracion','$opinion')");
                     if($resultado != 0){
@@ -92,11 +95,13 @@
                             <option>10</option>
 						</select></br></br>
 						Opinión personal: <textarea name="Opinion"></textarea></br></br>
-						<input type="submit" value="Valorar" name="Valorar" />
-						<input type="submit" value="Modificar valoración" name="Modificar" />
-						<input type="submit" value="Ver valoraciones" name="VerValoraciones" />
-						<input type="submit" value="Volver" name="Atras" />
+						<input type="submit" value="Valorar" name="Valorar" class="boton" />
+						<input type="submit" value="Modificar valoración" name="Modificar" class="boton" />
+						<input type="submit" value="Ver valoraciones" name="VerValoraciones" class="boton" />
+						<input type="submit" value="Volver" name="Atras" class="boton" />
 			 		</form> 
 		  <?php } ?>
+        </div>
+		
 	</body>
 </html>

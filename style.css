@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFE599;
+    
+}
+
+.boton{
+    background-color: #807c73;
+    color: white;
+    border-radius: 20px;
+    font-size: medium;
+    margin: 25px;
+}
+
+.imagen{
+    width: 800px;
+    height: 500px;
+}
+
+.lector{
+    width: 600px;
+    height: 300px;
+}
+
+.valorar{
+    width: 400px;
+    height: 400px;
+}

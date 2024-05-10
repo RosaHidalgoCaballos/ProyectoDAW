@@ -2,10 +2,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<div class="contenedor">
 		<h1>Página de valoración de libros</h1>
 		<h2>Registro lector</h2>
+		<img src="images/lector.jpg" class="lector" /></br></br>
 
 		<?php
 		try{
@@ -19,13 +22,14 @@
 			Apellido: <input type="text" name="Apellido" /></br></br>
 			DNI: <input type="text" name="DNI" required /></br></br>
 			Contraseña: <input type="password" name="Contrasenia" /></br></br>
-			<input type="submit" value="Registrar" name="Registrar" />
-			<input type="submit" value="Eliminar" name="Eliminar" /></br></br>
+			<input type="submit" value="Registrar" name="Registrar" class="boton" />
+			<input type="submit" value="Eliminar" name="Eliminar" class="boton" />
+			<input type="submit" value="Volver" name="Volver" class="boton" />
 		</form>
 
 		<?php
 		session_start();
-		if(isset($_SESSION['Nombre'])){
+		if(isset($_SESSION['DNI'])){
 			header("Location: opciones.php");
 		}
 		
@@ -36,9 +40,8 @@
 			$contrasenia = $_POST['Contrasenia'];
 			$contra = password_hash($passwd, PASSWORD_DEFAULT);
 
-			$resultado = $bd->exec("INSERT INTO lector VALUES ('$nombre','$apellido','$dni','$contra')");
+			$resultado = $bd->exec("INSERT INTO lector VALUES ('$dni','$nombre','$apellido','$contra')");
 			if($resultado != 0){
-				$_SESSION['Nombre'] = $nombre;
 				$_SESSION['DNI'] = $dni;
 				header("Location: opciones.php");
 			}else{
@@ -56,7 +59,10 @@
 				echo "El usuario no existe";
 			}
 		} 
+		if(isset($_POST['Volver'])){
+			header("Location: index.php");
+		}
 		?>
-				
+		</div>
 	</body>
 </html>
