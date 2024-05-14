@@ -13,14 +13,14 @@
 				}catch(Exception $e){
 					echo "Se ha producido un error de conexión en la base de datos";
 				}
-
-				if(isset($_POST['IncluirLibro'])){
+				$entradas = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				if(isset($entradas['IncluirLibro'])){
 					header('Location: incluir.php');
 				}
-				elseif(isset($_POST['Dar'])){
+				elseif(isset($entradas['Dar'])){
 					header('Location: valoracion.php');
 				}
-				elseif(isset($_POST['Ver'])){
+				elseif(isset($entradas['Ver'])){
 					$resultado = $bd->query("SELECT * FROM libro");
 					$registro = $resultado->fetchAll();
 					if($resultado->rowCount() !=0){
@@ -52,7 +52,7 @@
 						echo "No se han encontrado resultados";
 					}
 				}
-				elseif(isset($_POST['Volver'])){
+				elseif(isset($entradas['Volver'])){
 					header('Location:./index.php');
 				}
 				else { ?>

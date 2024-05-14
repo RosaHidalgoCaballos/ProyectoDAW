@@ -12,15 +12,15 @@
 
 			<?php
 			$bd = new PDO('mysql:host=localhost;dbname=bdrosa;charset=utf8', 'root', '');
-
-				if(isset($_POST['Loguearse'])){
+			$entradas = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				if(isset($entradas['Loguearse'])){
 					header('Location: registro.php');
 				}
 
-				elseif(isset($_POST['Continuar'])){
+				elseif(isset($entradas['Continuar'])){
 					header('Location: sinregistro.php');
 				}
-				elseif(isset($_POST['Cerrar'])){
+				elseif(isset($entradas['Cerrar'])){
 					session_start();
 					session_destroy();
 					echo "Sesión cerrrada correctamente";
