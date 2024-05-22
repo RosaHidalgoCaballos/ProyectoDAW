@@ -5,6 +5,26 @@
 	</head>
 	<body>
         <div class="contenedor">
+        <?php 
+				session_start();
+				if(isset($_SESSION['DNI'])){
+					?>
+					<div class="menu">
+						<img src="images/logo.png" class="logo" />
+						<h1>ReadyToRead</h1>
+						<p>Sesion iniciada</p>
+					</div>
+					<?php
+				}else{
+					?>
+					<div class="menu">
+						<img src="images/logo.png" class="logo" />
+						<h1>ReadyToRead</h1>
+						<p>Usted no se ha logueado</p>
+					</div>
+					<?php
+				}
+			?>
         <h1>Página de valoración de libros</h1>
         <h2>Dar valoración</h2>
         <img src="images/valorar.jpg" class="valorar" /></br></br>
@@ -16,7 +36,7 @@
             }
             $entradas = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 				if(isset($entradas['Valorar']) && !empty($entradas['CodigoLibro']) && !empty($entradas['Opinion'])){
-					session_start();
+					
 					$dniLector=$_SESSION['DNI'];
 					$codigoLibro=$entradas['CodigoLibro'];
 					$valoracion=$entradas['Valoracion'];
@@ -84,7 +104,17 @@
 		  		}
 		  		else { ?>
 					<form method="post">
-						Código libro: <input type="text" name="CodigoLibro" /></br></br>
+                    Código libro: 
+                    <select name="CodigoLibro">
+                        <?php
+                            $resultadoLibros = $bd->query("SELECT CODIGO_LIBRO, NOMBRE_LIBRO FROM libro");
+                            $libros = $resultadoLibros->fetchAll();
+                            foreach($libros as $libro){ ?>
+                                <option value=" <?php echo $libro['CODIGO_LIBRO'] ?>"><?php echo $libro['NOMBRE_LIBRO'] . " (" . $libro['CODIGO_LIBRO'] . ")" ?></option>
+                            <?php
+                            }
+                        ?>
+                    </select></br></br>
 						Valoración:
 						<select name="Valoracion">
 			                <option>1</option>

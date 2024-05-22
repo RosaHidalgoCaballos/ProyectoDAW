@@ -1,4 +1,3 @@
-
 <html>
 	<head>
 		<meta charset="UTF-8" />
@@ -27,7 +26,7 @@
 				}
 			?>
 			<h1>Página de valoración de libros</h1>
-			<h2>Registro lector</h2>
+			<h2>Login lector</h2>
 			<img src="images/lector.jpg" class="lector" /></br></br>
 
 			<?php
@@ -37,14 +36,10 @@
 				echo "Se ha producido un error de conexión en la base de datos";
 			}
 			?>
-			<form method="post" id="formulario">
-				Nombre: <input type="text" name="Nombre" /></br></br>
-				Apellido: <input type="text" name="Apellido" /></br></br>
+			<form method="post">
 				DNI: <input type="text" name="DNI" /></br></br>
 				Contraseña: <input type="password" name="Contrasenia" /></br></br>
-				<input type="submit" value="Registrar" name="Registrar" class="boton" />
-				<input type="submit" value="Eliminar" name="Eliminar" class="boton" id="Eliminar" />
-				<input type="submit" value="Volver" name="Volver" class="boton" />
+				<input type="submit" value="Entrar" name="Entrar" class="boton" />
 			</form>
 
 			<?php
@@ -54,48 +49,34 @@
 				header("Location: opciones.php");
 			}
 			
-			if(isset($entradas['Registrar']) && !empty($entradas['Nombre']) && !empty($entradas['Apellido']) && !empty($entradas['DNI']) && !empty($entradas['Contrasenia'])){
-				$nombre=$entradas['Nombre'];
-				$apellido=$entradas['Apellido'];
+			if(isset($entradas['Entrar']) && !empty($entradas['DNI']) && !empty($entradas['Contrasenia'])){
 				$dni=$entradas['DNI'];
-				if(strlen($dni) != 9){
+                if(strlen($dni) != 9){
 					echo "El dni no tiene el formato correcto";
 					exit;
 				}
 				$contrasenia = $entradas['Contrasenia'];
-				//cifrar contraseña
-				$salt = "fijosalt1234567890123"; 
+                //cifrar contraseña hash
+                $salt = "fijosalt1234567890123"; 
                 $salt = sprintf('$2y$10$%s$', $salt);
                 $contra = crypt($contrasenia, $salt);
 
-				//comprobar que no exista en bd
+                //comprobar que exista en bd
                 $sql = "SELECT * FROM lector WHERE DNI = :dni";
 				$stmt = $bd->prepare($sql);
 				$stmt->bindParam(':dni', $dni);
 				$stmt->execute();
 				$lector = $stmt->fetch(PDO::FETCH_ASSOC);
 
-				if($lector){
-					echo "Este usuario ya se ha registrado, para entrar haga login";
-				}else{
-					$resultado = $bd->exec("INSERT INTO lector VALUES ('$dni','$nombre','$apellido','$contra')");
-					if($resultado != 0){
-						echo "Lector registrado correctamente";
-					}else{
-						echo "Error al insertar datos";
-					}
+				if($lector && $contra == $lector['CONTRASENIA']){
+					$_SESSION['DNI'] = $dni;
+					header("Location: opciones.php");
+					exit;
+				} else {
+					echo "DNI o contraseña incorrecta";
 				}
-
-			}
-			elseif(isset($entradas['Registrar']) && (empty($entradas['DNI']) || empty($entradas['Contrasenia']))){
-				echo "Los campos DNI y contraseña es obligatorio";
-			}
-			elseif(isset($entradas['Volver'])){
-				header("Location: index.php");
 			}
 			?>
-			<div id="mensaje"></div>
 		</div>
 	</body>
-	<script src="script.js"></script>
 </html>

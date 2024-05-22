@@ -19,8 +19,15 @@ body{
     
 }
 
+.pg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .boton{
-    background-color: #807c73;
+    background-color: #495662;
     color: white;
     border-radius: 20px;
     font-size: medium;
@@ -40,6 +47,44 @@ body{
 .valorar{
     width: 400px;
     height: 400px;
+}
+
+.menu{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #495662;
+    color: white;
+}
+
+.logo{
+    width: 120px;
+    height: 100px;
+}
+
+.mi-lista {
+    list-style-type: square; /* Cambia el tipo de marcador a un cuadrado */
+    margin: 20px; /* Añade margen alrededor de la lista */
+    padding: 10px; /* Añade relleno dentro de la lista */
+    
+}
+
+.mi-lista li {
+    color: #333; /* Color del texto de los elementos de la lista */
+    padding: 5px; /* Añade relleno a cada elemento de la lista */
+}
+
+.mi-lista a {
+    color: #333; /* Color del texto de los enlaces */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    display: block; /* Hace que los enlaces ocupen todo el espacio del elemento de lista */
+}
+
+.mi-lista a:hover {
+    background-color: #e0e0e0; /* Color de fondo al pasar el cursor por encima */
 }
 
 /* Hacer responsive para moviles */

@@ -1,5 +1,4 @@
 let boton = document.getElementById("Eliminar");
-
 boton.addEventListener("click", confirmar);
 
 function confirmar() {
@@ -23,3 +22,31 @@ function confirmar() {
         console.log("Acción cancelada");
     }
 }
+
+function obtener(str) {
+        
+    let nombre = str.innerText;
+
+        // Si el usuario confirma, enviar una solicitud AJAX a un script PHP
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'detalles.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Manejar la respuesta del servidor si es necesario
+                document.getElementById("lista").innerHTML = "";
+                document.getElementById("mensaje").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send("nombre=" + nombre); // Enviar el DNI como datos en la solicitud
+
+}
+
+fetch('servidor.php?q=' + str).then(function (response) {
+    return response.json(); // Este response.json() que devolvemos...
+}).then(function (producto) {
+        document.getElementById("spnNombre").innerHTML =producto.nombre;
+        document.getElementById("spnPrecio").innerHTML =producto.precio;
+        document.getElementById("ficha").style.display = "block";
+
+});

@@ -5,6 +5,26 @@
 	</head>
 	<body>
         <div class="contenedor">
+		<?php 
+				session_start();
+				if(isset($_SESSION['DNI'])){
+					?>
+					<div class="menu">
+						<img src="images/logo.png" class="logo" />
+						<h1>ReadyToRead</h1>
+						<p>Sesion iniciada</p>
+					</div>
+					<?php
+				}else{
+					?>
+					<div class="menu">
+						<img src="images/logo.png" class="logo" />
+						<h1>ReadyToRead</h1>
+						<p>Usted no se ha logueado</p>
+					</div>
+					<?php
+				}
+			?>
         <h1>Página de valoración de libros</h1>
         <h2>Incluir libro</h2>
 		<?php
@@ -28,12 +48,23 @@
 					$ed7=(isset($entradas['Otra']))?($entradas['Otra']):'';
 					$editorial=$ed1.$ed2.$ed3.$ed4.$ed5.$ed6.$ed7;
 
-                    $resultado = $bd->exec("INSERT INTO libro VALUES ('$codigo','$nombre','$genero','$autor', '$editorial')");
-                    if($resultado != 0){
-                        echo "Libro insertado correctamente";
-                    }else{
-                        echo "Error al insertar datos";
-                    }
+					//comprobar que no exista en bd
+					$sql = "SELECT * FROM libro WHERE CODIGO_LIBRO = :codigo";
+					$stmt = $bd->prepare($sql);
+					$stmt->bindParam(':codigo', $codigo);
+					$stmt->execute();
+					$libro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+					if($libro){
+						echo "Este libro ya está registrado";
+					}else{
+						$resultado = $bd->exec("INSERT INTO libro VALUES ('$codigo','$nombre','$genero','$autor', '$editorial')");
+                    	if($resultado != 0){
+                        	echo "Libro insertado correctamente";
+                    	}else{
+                        	echo "Error al insertar datos";
+                    	}
+					}           
 	
 				}
 				elseif(isset($entradas['Incluir']) && (empty($entradas['Codigo']) || empty($entradas['NombreLibro']))){
