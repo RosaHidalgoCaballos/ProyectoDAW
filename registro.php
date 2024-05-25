@@ -1,7 +1,9 @@
 
-<html>
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ReadyToRead</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
@@ -10,25 +12,25 @@
 				session_start();
 				if(isset($_SESSION['DNI'])){
 					?>
-					<div class="menu">
-						<img src="images/logo.png" class="logo" />
+					<header  class="menu">
+						<img src="images/logo.png" alt="Logo de ReadyToRead" class="logo" />
 						<h1>ReadyToRead</h1>
 						<p>Sesion iniciada</p>
-					</div>
+					</header >
 					<?php
 				}else{
 					?>
-					<div class="menu">
-						<img src="images/logo.png" class="logo" />
+					<header  class="menu">
+						<img src="images/logo.png" alt="Logo de ReadyToRead" class="logo" />
 						<h1>ReadyToRead</h1>
 						<p>Usted no se ha logueado</p>
-					</div>
+					</header >
 					<?php
 				}
 			?>
 			<h1>Página de valoración de libros</h1>
 			<h2>Registro lector</h2>
-			<img src="images/lector.jpg" class="lector" /></br></br>
+			<img src="images/lector.jpg" alt="Niño leyendo un libro" class="lector" /></br></br>
 
 			<?php
 			try{
@@ -38,10 +40,14 @@
 			}
 			?>
 			<form method="post" id="formulario">
-				Nombre: <input type="text" name="Nombre" /></br></br>
-				Apellido: <input type="text" name="Apellido" /></br></br>
-				DNI: <input type="text" name="DNI" /></br></br>
-				Contraseña: <input type="password" name="Contrasenia" /></br></br>
+				<label for="Nombre">Nombre:</label> 
+				<input type="text" id="Nombre" name="Nombre" /></br></br>
+				<label for="Apellido">Apellido:</label> 
+				<input type="text" id="Apellido" name="Apellido" /></br></br>
+				<label for="DNI">DNI:</label> 
+				<input type="text" id="DNI" name="DNI" /></br></br>
+				<label for="Contrasenia">Contraseña:</label> 
+				<input type="password" id="Contrasenia" name="Contrasenia" /></br></br>
 				<input type="submit" value="Registrar" name="Registrar" class="boton" />
 				<input type="submit" value="Eliminar" name="Eliminar" class="boton" id="Eliminar" />
 				<input type="submit" value="Volver" name="Volver" class="boton" />
