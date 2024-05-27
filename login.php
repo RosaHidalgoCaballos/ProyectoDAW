@@ -44,6 +44,7 @@
 				<label for="Contrasenia">Contraseña:</label> 
 				<input type="password" id="Contrasenia" name="Contrasenia" /></br></br>
 				<input type="submit" value="Entrar" name="Entrar" class="boton" />
+				<input type="submit" value="Volver" name="Volver" class="boton" />
 			</form>
 
 			<?php
@@ -79,6 +80,8 @@
 				} else {
 					echo "DNI o contraseña incorrecta";
 				}
+			}elseif(isset($entradas['Volver'])){
+				header('Location:./index.php');
 			}
 			?>
 		</div>

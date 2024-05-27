@@ -77,14 +77,15 @@ body{
     padding: 5px; /* Añade relleno a cada elemento de la lista */
 }
 
-.mi-lista a {
-    color: #333; /* Color del texto de los enlaces */
-    text-decoration: none; /* Quita el subrayado de los enlaces */
-    display: block; /* Hace que los enlaces ocupen todo el espacio del elemento de lista */
+.mi-lista li:hover {
+    background-color: #e0e0e0; /* Color de fondo al pasar el cursor por encima */
 }
 
-.mi-lista a:hover {
-    background-color: #e0e0e0; /* Color de fondo al pasar el cursor por encima */
+#lista{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Media query para dispositivos móviles */

@@ -27,7 +27,7 @@
 					<?php
 				}
 			?>
-			<div id="lista">
+			<div id="lista" >
 				<h1>Página de valoración de libros</h1>
 				<img src="images/imagen.jpg" alt="" class="imagen" /></br></br>
 				<?php
@@ -75,10 +75,10 @@
 							<input type="submit" value="Volver" name="Volver" class="boton" />
 						</form>
 				<?php } ?>
-			</div>
-		<div id="mensaje"></div>
-		</div>
 		
+			</div>
+			<div id="mensaje"></div>
+		</div>
 	</body>
 	<script src="script.js"></script>
 </html>

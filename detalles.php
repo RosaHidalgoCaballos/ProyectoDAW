@@ -17,7 +17,7 @@ if (isset($_POST['nombre'])) {
         
     if ($libro) {
         ?>
-        <h1>Detalles del libro <?php echo $libro['NOMBRE_LIBRO']; ?></h1>
+        <h1>Detalles del libro: <?php echo $libro['NOMBRE_LIBRO']; ?></h1>
         <p>Codigo libro: <?php echo $libro['CODIGO_LIBRO']; ?></p>
         <p>Género: <?php echo $libro['GENERO']; ?></p>
         <p>Autor: <?php echo $libro['AUTOR']; ?></p>
