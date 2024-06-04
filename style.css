@@ -19,11 +19,79 @@ body{
     
 }
 
+.hidden {
+    display: none;
+}
+
+.tabla{
+    margin: 50px;
+}
+
 .pg{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.caja1{
+    margin-left: 18px;
+}
+
+.caja2{
+    margin-left: 15px;
+}
+
+.caja3{
+    margin-left: 43px;
+}
+
+.caja4{
+    margin-left: 29px;
+}
+
+.caja5{
+    margin-left: 70px;
+}
+
+.gen{
+    margin-left: 70px;
+}
+
+.gen1{
+    margin-left: 82px;
+}
+
+.gen2{
+    margin-left: 79px;
+}
+
+.gen3{
+    margin-left: 80px;
+}
+
+.gen4{
+    margin-left: 81px;
+}
+
+.edi{
+    margin-left: 70px;
+}
+
+.edi1{
+    margin-left: 92px;
+}
+
+.edi2{
+    margin-left: 97px;
+}
+
+.val1{
+    margin-left: 29px;
+}
+
+.val2{
+    margin-left: 41px;
 }
 
 .boton{
@@ -34,19 +102,58 @@ body{
     margin: 25px;
 }
 
+.esquina{
+    margin-right: 20px;
+}
+
+.submit-button {
+    width: 50px;
+    height: 50px;
+    background: url(./images/login.png) no-repeat center;
+    margin-right: 20px;
+    border: none;
+}
+
 .imagen{
-    width: 800px;
-    height: 500px;
+    width: 700px;
+    height: 400px;
+    margin-top: 50px;
 }
 
 .lector{
-    width: 600px;
+    width: 300px;
     height: 300px;
 }
 
+.registro{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.login{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    margin-left: -100px;
+}
+
+.valoracion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
 .valorar{
-    width: 400px;
-    height: 400px;
+    margin-bottom: 60px;
+    width: 200px;
+    height: 200px;
 }
 
 .menu{
@@ -95,7 +202,7 @@ body{
         padding: 10px;
     }
 
-    .imagen, .lector, .valorar {
+    .imagen, .lector, .valorar, .libros {
         max-width: 100%;
         height: auto;
     }

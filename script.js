@@ -27,7 +27,6 @@ function obtener(str) {
         
     let nombre = str.innerText;
 
-        // Si el usuario confirma, enviar una solicitud AJAX a un script PHP
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'detalles.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -38,15 +37,11 @@ function obtener(str) {
                 document.getElementById("mensaje").innerHTML = xhr.responseText;
             }
         };
-        xhr.send("nombre=" + nombre); // Enviar el DNI como datos en la solicitud
+        xhr.send("nombre=" + nombre); // Enviar el nombre como datos en la solicitud
 
 }
 
-fetch('servidor.php?q=' + str).then(function (response) {
-    return response.json(); // Este response.json() que devolvemos...
-}).then(function (producto) {
-        document.getElementById("spnNombre").innerHTML =producto.nombre;
-        document.getElementById("spnPrecio").innerHTML =producto.precio;
-        document.getElementById("ficha").style.display = "block";
-
-});
+function ver(){
+    let imagen = document.getElementById("imagenLibros");
+    imagen.style.display = "none";
+}

@@ -8,33 +8,40 @@
 	<body>
         <div class="contenedor">
 		<?php 
+		            try{
+						$bd = new PDO('mysql:host=localhost;dbname=bdrosa', 'root', '');
+					}catch(Exception $e){
+						echo "Se ha producido un error de conexión en la base de datos";
+					}
 				session_start();
-				if(isset($_SESSION['DNI'])){
+				
 					?>
 					<header  class="menu">
 						<img src="images/logo.png" alt="Logo de ReadyToRead" class="logo" />
 						<h1>ReadyToRead</h1>
-						<p>Sesion iniciada</p>
-					</header >
+						<?php
+						if(isset($_SESSION['DNI'])){
+							$dni=$_SESSION['DNI'];
+							$stmt = $bd->prepare("SELECT * FROM lector WHERE DNI = ?");
+							$stmt->execute([$dni]);
+							$lector = $stmt->fetch(PDO::FETCH_ASSOC);
+						
+							if ($lector) {?>
+								<p class="esquina"><?php echo $lector['NOMBRE_LECTOR']; ?></p>
+					  <?php }
+						}else{ ?>
+							<form method="post">
+							<input type="submit" value=" " name="Entrar" class="submit-button">
+						</form>
+	
 					<?php
-				}else{
-					?>
-					<header  class="menu">
-						<img src="images/logo.png" alt="Logo de ReadyToRead" class="logo" />
-						<h1>ReadyToRead</h1>
-						<p>Usted no se ha logueado</p>
+						if(isset($_POST['Entrar'])){
+							header('Location: login.php');
+						}	}
+						?>
 					</header >
-					<?php
-				}
-			?>
-        <h1>Página de valoración de libros</h1>
         <h2>Incluir libro</h2>
 		<?php
-            try{
-                $bd = new PDO('mysql:host=localhost;dbname=bdrosa', 'root', '');
-            }catch(Exception $e){
-                echo "Se ha producido un error de conexión en la base de datos";
-            }
 			$entradas = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 				if(isset($entradas['Incluir']) && !empty($entradas['Codigo']) && !empty($entradas['NombreLibro']) && !empty($entradas['Autor'])){
 					$codigo=$entradas['Codigo'];
@@ -84,32 +91,32 @@
 		  		else { ?>
 					<form method="post">
 						<label for="Codigo">Código libro:</label> 
-						<input type="text" id="Codigo" name="Codigo" /></br></br>
+						<input type="text" id="Codigo" name="Codigo" class="caja4" /></br></br>
 						<label for="NombreLibro">Nombre del libro:</label> 
 						<input type="text" id="NombreLibro" name="NombreLibro" /></br></br>
 						<fieldset>
 							<legend>Género:</legend> 
 							<input type="radio"  id="" name="Genero" value="Terror" />Terror
-							<input type="radio"  id=""  name="Genero" value="Juvenil" />Juvenil<br></br>
+							<input type="radio"  id=""  name="Genero" value="Juvenil" class="gen1" />Juvenil<br></br>
 							<input type="radio"  id=""  name="Genero" value="Drama" />Drama
-							<input type="radio"  id=""  name="Genero" value="Misterio" />Misterio<br></br>
+							<input type="radio"  id=""  name="Genero" value="Misterio" class="gen2" />Misterio<br></br>
 							<input type="radio"  id=""  name="Genero" value="Poesia" />Poesia
-							<input type="radio"  id=""  name="Genero" value="Novela" />Novela<br></br>
+							<input type="radio"  id=""  name="Genero" value="Novela" class="gen3" />Novela<br></br>
 							<input type="radio"  id=""  name="Genero" value="Historia" />Historia
-							<input type="radio"  id=""  name="Genero" value="Humor" />Humor<br></br>
+							<input type="radio"  id=""  name="Genero" value="Humor" class="gen" />Humor<br></br>
 							<input type="radio"  id=""  name="Genero" value="Teatro" />Teatro
-							<input type="radio"  id=""  name="Genero" value="Filosofia" />Filosofia<br></br>
+							<input type="radio"  id=""  name="Genero" value="Filosofia" class="gen4" />Filosofia<br></br>
 						</fieldset></br></br>
 						<label for="Autor">Autor:</label> 
-						<input type="text" id="Autor" name="Autor" /></br></br>
+						<input type="text" id="Autor" name="Autor" class="caja5" /></br></br>
 						<fieldset>
 							<legend>Editorial:</legend>
 							<label><input type="checkbox" id="Espasa" name="Espasa" value="Espasa" />Espasa</label>
-							<label><input type="checkbox" id="Booket" name="Booket" value="Booket" />Booket</label></br>
+							<label><input type="checkbox" id="Booket" name="Booket" value="Booket" class="edi1" />Booket</label></br>
 							<label><input type="checkbox" id="Edebe" name="Edebe" value="Edebe" />Edebé</label>
-							<label><input type="checkbox" id="SM" name="SM" value="SM" />SM</label></br>
+							<label><input type="checkbox" id="SM" name="SM" value="SM" class="edi2" />SM</label></br>
 							<label><input type="checkbox" id="Debolsillo" name="Debolsillo" value="Debolsillo" />Debolsillo</label>
-							<label><input type="checkbox" id="Planeta" name="Planeta" value="Planeta" />Planeta</label></br>
+							<label><input type="checkbox" id="Planeta" name="Planeta" value="Planeta" class="edi" />Planeta</label></br>
 							<label><input type="checkbox" id="Otra" name="Otra" value="Otra" />Otra</label></br></br>
 						</fieldset>
 						<input type="submit" value="Incluir" name="Incluir" class="boton" />

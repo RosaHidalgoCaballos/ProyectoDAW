@@ -9,31 +9,41 @@
 	<body>
 		<div class="contenedor">
 			<?php 
+			$bd = new PDO('mysql:host=localhost;dbname=bdrosa;charset=utf8', 'root', '');
 				session_start();
-				if(isset($_SESSION['DNI'])){
+				
 					?>
 					<header  class="menu">
 						<img src="images/logo.png" alt="Logo de ReadyToRead" class="logo" />
 						<h1>ReadyToRead</h1>
-						<p>Sesion iniciada</p>
-					</header >
+						<?php
+						if(isset($_SESSION['DNI'])){
+							$dni=$_SESSION['DNI'];
+							$stmt = $bd->prepare("SELECT * FROM lector WHERE DNI = ?");
+							$stmt->execute([$dni]);
+							$lector = $stmt->fetch(PDO::FETCH_ASSOC);
+						
+							if ($lector) {?>
+								<p class="esquina"><?php echo $lector['NOMBRE_LECTOR']; ?></p>
+					  <?php }
+						}else{ ?>
+						<form method="post">
+							<input type="submit" value=" " name="Entrar" class="submit-button">
+						</form>
+	
 					<?php
-				}else{
-					?>
-					<header  class="menu">
-						<img src="images/logo.png" alt="Logo de ReadyToRead" class="logo" />
-						<h1>ReadyToRead</h1>
-						<p>Usted no se ha logueado</p>
+						if(isset($_POST['Entrar'])){
+							header('Location: login.php');
+						}
+					
+					}
+						?>
 					</header >
-					<?php
-				}
-			?>
-			<h1>Página de valoración de libros</h1>
-			<h2>Bienvenido</h2>
+					
 			<img src="images/libro1.jpg" alt="Imagen de un libro abierto" class="imagen" />
 
 			<?php
-			$bd = new PDO('mysql:host=localhost;dbname=bdrosa;charset=utf8', 'root', '');
+			
 			$entradas = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 				if(isset($entradas['Registro'])){
 					header('Location: registro.php');
