@@ -195,6 +195,11 @@ body{
     align-items: center;
 }
 
+#Opinion {
+    height: 200px; /* Correspondiente a 10 filas */
+    width: 500px;  /* Correspondiente a 50 columnas */
+}
+
 /* Media query para dispositivos móviles */
 @media (max-width: 375px) {
     .contenedor {
@@ -229,6 +234,91 @@ body{
         padding: 0;
         margin: 10px 0;
     }
+
+    .registro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .login{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+    .valoracion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .datos{
+        max-width: 100%;
+        height: auto;
+    }
+
+    #Opinion, #codLib {
+        height: auto; 
+        max-width: 100%;  
+    }
+}
+
+@media(max-width: 1140px){
+
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .registro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .login{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+    .valoracion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .datos{
+        max-width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    #Opinion, #codLib {
+        height: auto; 
+        max-width: 100%;  
+        
+    }
 }
 
 @media(max-width: 1440px){
@@ -236,5 +326,36 @@ body{
         max-width: 100%;
         height: auto;
         padding: 20px;
+    }
+
+    .registro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .login{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+    .datos{
+        max-width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    #Opinion, #codLib {
+        height: auto; 
+        max-width: 100%; 
+        
     }
 }
